@@ -239,3 +239,13 @@ def print_all_piece_orientations():
 
 # print_all_piece_orientations()
 
+
+# bring the first coordinate of a piece to new coordinates
+# return the cooridnates of the translated piece
+def translate_piece_to(piece, new_coordinate):
+    delta_row = new_coordinate[0] - piece[0][0]
+    delta_column = new_coordinate[1] - piece[0][1]
+    return [
+        (coordinate[0] + delta_row, coordinate[1] + delta_column)
+        for coordinate in piece
+    ]
