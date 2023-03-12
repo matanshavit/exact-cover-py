@@ -106,17 +106,18 @@ def are_compatible(piece_a, piece_b):
     return True
 
 
-def placements_and_compatability(month, date, day):
-    board_squares = get_calendar_squares(month, date, day)
-    piece_placements = get_piece_placements(board_squares)
-
+# checks piece placement of every combination of placements
+# from two different pieces if they are compatible
+# the result is stored at the index of the piece placement
+# with a lower piece index to avaoid repetition
+# (i.e. if piece 1 is checked with piece 3, the results are only at index 1)
+def get_compatabile_placement_indicies(piece_placements): 
     compatible_indices = [
         [
             {} for _ in range(len(placements))    
         ] for placements in piece_placements
     ]
 
-    count = 0
     for piece_index, placements in enumerate(piece_placements):
         for placement_index, placement in enumerate(placements):
             for other_piece_index, other_placements in enumerate(piece_placements[piece_index+1:], piece_index+1):
@@ -125,8 +126,13 @@ def placements_and_compatability(month, date, day):
                         (other_piece_index, other_placement_index)
                     ] = are_compatible(placement, other_placement)
 
-                    count += 1
-    print(count)
+    return compatible_indices
 
 
-# placements_and_compatability("Mar", "12", "Sun")
+def placements_and_compatability(month, date, day):
+    board_squares = get_calendar_squares(month, date, day)
+    piece_placements = get_piece_placements(board_squares)
+    compatible_indices = get_compatabile_placement_indicies(piece_placements)
+
+
+placements_and_compatability("Mar", "12", "Sun")
