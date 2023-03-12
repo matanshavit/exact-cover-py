@@ -301,3 +301,36 @@ def get_every_placement_for_every_day():
 
 # timed - 24 seconds for every possible puzzle definition (combination of 3 squares)
 # get_every_placement_for_every_day()
+
+
+# returns True if two piece placements do not overlap
+def are_compatible(piece_a, piece_b):
+    for square in piece_a:
+        if square in piece_b:
+            return False
+    return True
+
+
+def placements_and_compatability(month, date, day):
+    board_squares = get_calendar_squares(month, date, day)
+    piece_placements = get_piece_placements(board_squares)
+
+    compatible_indices = [
+        [
+            {} for _ in range(len(placements))    
+        ] for placements in piece_placements
+    ]
+
+    count = 0
+    for piece_index, placements in enumerate(piece_placements):
+        for placement_index, placement in enumerate(placements):
+            for other_piece_index, other_placements in enumerate(piece_placements[piece_index+1:], piece_index+1):
+                for other_placement_index, other_placement in enumerate(other_placements):
+                    compatible_indices[piece_index][placement_index][
+                        (other_piece_index, other_placement_index)
+                    ] = are_compatible(placement, other_placement)
+
+                    count += 1
+    print(count)
+
+# placements_and_compatability("Mar", "12", "Sun")
