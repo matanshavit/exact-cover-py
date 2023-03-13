@@ -134,3 +134,24 @@ PIECE_ORIENTATION_SQUARES = [
         [(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)],
     ],
 ]
+
+
+def print_piece(piece_coordinates):
+    for row in range(4):
+        print("".join(
+            "X" if (row, column) in piece_coordinates
+            else "_"
+            for column in range(4)
+        ))
+    print()
+
+
+def print_all_piece_orientations():
+    for i, piece_orientations in enumerate(PIECE_ORIENTATION_SQUARES):
+        print(f'piece # {i + 1}\n')
+        for piece_orientation in piece_orientations:
+            print_piece(piece_orientation)
+            print()
+
+
+# print_all_piece_orientations()

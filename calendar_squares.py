@@ -72,3 +72,13 @@ EMPTY_CALENDAR_SQUARES = {
         "Fri": (6, 5),
         "Sat": (6, 6),
     }
+
+
+# the squares that need to be covered for a certain day
+# defining the exact cover problem
+def get_calendar_squares(month, date, day):
+    return [
+        square for
+        key, square in EMPTY_CALENDAR_SQUARES.items()
+        if key not in (month, date, day)
+    ]

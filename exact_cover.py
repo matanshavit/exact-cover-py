@@ -1,36 +1,5 @@
-from empty_calendar import EMPTY_CALENDAR_SQUARES
+from calendar_squares import get_calendar_squares
 from pieces import PIECE_ORIENTATION_SQUARES
-
-
-# the squares that need to be covered for a certain day
-# defining the exact cover problem
-def get_calendar_squares(month, date, day):
-    return [
-        square for
-        key, square in EMPTY_CALENDAR_SQUARES.items()
-        if key not in (month, date, day)
-    ]
-
-
-def print_piece(piece_coordinates):
-    for row in range(4):
-        print("".join(
-            "X" if (row, column) in piece_coordinates
-            else "_"
-            for column in range(4)
-        ))
-    print()
-
-
-def print_all_piece_orientations():
-    for i, piece_orientations in enumerate(PIECE_ORIENTATION_SQUARES):
-        print(f'piece # {i + 1}\n')
-        for piece_orientation in piece_orientations:
-            print_piece(piece_orientation)
-            print()
-
-
-# print_all_piece_orientations()
 
 
 # bring the first coordinate of a piece to new coordinates
