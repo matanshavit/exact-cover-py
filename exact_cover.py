@@ -58,22 +58,22 @@ def are_compatible(piece_a, piece_b):
 # the result is stored at the index of the piece placement
 # with a lower piece index to avaoid repetition
 # (i.e. if piece 1 is checked with piece 3, the results are only at index 1)
-def get_compatabile_placement_indicies(piece_placements): 
-    compatible_indices = [
+def get_compatabile_placement_indicies(piece_placements):
+
+    def compatabile_indicies_dict(piece_index, placement):
+        return {
+            (other_piece_index, other_placement_index): are_compatible(placement, other_placement)
+            for other_piece_index, other_placements in enumerate(piece_placements[piece_index+1:], piece_index+1)
+            for other_placement_index, other_placement in enumerate(other_placements)
+        }
+
+    return [
         [
-            {} for _ in range(len(placements))    
-        ] for placements in piece_placements
+            compatabile_indicies_dict(piece_index, placement)
+            for placement in placements
+        ]
+        for piece_index, placements in enumerate(piece_placements)
     ]
-
-    for piece_index, placements in enumerate(piece_placements):
-        for placement_index, placement in enumerate(placements):
-            for other_piece_index, other_placements in enumerate(piece_placements[piece_index+1:], piece_index+1):
-                for other_placement_index, other_placement in enumerate(other_placements):
-                    compatible_indices[piece_index][placement_index][
-                        (other_piece_index, other_placement_index)
-                    ] = are_compatible(placement, other_placement)
-
-    return compatible_indices
 
 
 def placements_and_compatability(month, date, day):
