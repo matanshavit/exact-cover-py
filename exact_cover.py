@@ -76,28 +76,6 @@ def get_piece_placements(board_squares):
 # print(sum(lengths))
 
 
-def get_every_placement_for_every_day():
-    for month in [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ]:
-        for day in [
-            'Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'
-        ]:
-            for date in [
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-                "31",         
-            ]:
-                board_squares = get_calendar_squares(month, date, day)
-                placements = get_piece_placements(board_squares)
-                lengths = [len(placement_options) for placement_options in placements]
-
-
-# timed - 24 seconds for every possible puzzle definition (combination of 3 squares)
-# get_every_placement_for_every_day()
-
-
 # returns True if two piece placements do not overlap
 def are_compatible(piece_a, piece_b):
     for square in piece_a:
