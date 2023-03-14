@@ -1,4 +1,5 @@
 import random
+import sys
 
 from calendar_squares import get_calendar_squares
 from pieces import PIECE_ORIENTATION_SQUARES
@@ -170,4 +171,4 @@ def print_arrangements_for_date(month, date, day):
         print()
         print_arrangement(arrangement)
 
-print_arrangements_for_date("Mar", "14", "Tues")
+print_arrangements_for_date(sys.argv[1], sys.argv[2], sys.argv[3])
