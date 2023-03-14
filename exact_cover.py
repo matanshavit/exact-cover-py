@@ -2,6 +2,7 @@ import random
 
 from calendar_squares import get_calendar_squares
 from pieces import PIECE_ORIENTATION_SQUARES
+from display import print_arrangement
 
 
 # bring the first coordinate of a piece to new coordinates
@@ -91,7 +92,6 @@ def get_compatabile_placement_indicies(piece_placements):
 # return value is a list of placement indices in order of piece index
 # for example, a return value of [10, 11, 12, ...]
 # represents placements [0][10], [1][11], [2][12], ...
-
 def get_valid_arrangements(compatible_indices, return_first, random_order):
     last_piece_index = len(compatible_indices) - 1
 
@@ -160,6 +160,7 @@ def find_arrangements_for_date(month, date, day, return_first=True, random_order
         for arrangement in valid_arrangements
     ]
 
+
 def print_arrangements_for_date(month, date, day):
     arrangements = find_arrangements_for_date(month, date, day)
     if len(arrangements) > 1:
@@ -167,7 +168,6 @@ def print_arrangements_for_date(month, date, day):
         print(f'{len(arrangements)} valid arrangements')
     for arrangement in arrangements:
         print()
-        for placement in arrangement:
-            print(placement)
+        print_arrangement(arrangement)
 
 print_arrangements_for_date("Mar", "14", "Tues")
