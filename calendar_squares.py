@@ -68,9 +68,9 @@ EMPTY_CALENDAR_SQUARES = {
         "Mon": (6, 4),
         "Tues": (6, 5),
         "Wed": (6, 6),
-        "Thur": (6, 4),
-        "Fri": (6, 5),
-        "Sat": (6, 6),
+        "Thur": (7, 4),
+        "Fri": (7, 5),
+        "Sat": (7, 6),
     }
 
 
