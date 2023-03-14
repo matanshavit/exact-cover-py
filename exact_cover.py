@@ -7,11 +7,15 @@ from arrangements import get_valid_arrangements
 from display import print_arrangement
 
 
-def find_arrangements_for_date(month, date, day, return_first=True, random_order=True):
+def find_arrangements_for_date(
+    month, date, day, return_first=True, random_order=True, show_progress=False
+):
     board_squares = get_calendar_squares(month, date, day)
     piece_placements = get_piece_placements(board_squares)
     compatible_indices = get_compatabile_placement_indicies(piece_placements)
-    valid_arrangements = get_valid_arrangements(compatible_indices, return_first, random_order)
+    valid_arrangements = get_valid_arrangements(
+        compatible_indices, return_first, random_order, show_progress
+    )
     return [
         [
             piece_placements[piece][placement]

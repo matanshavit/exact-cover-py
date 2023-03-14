@@ -5,7 +5,7 @@ import random
 # return value is a list of placement indices in order of piece index
 # for example, a return value of [10, 11, 12, ...]
 # represents placements [0][10], [1][11], [2][12], ...
-def get_valid_arrangements(compatible_indices, return_first, random_order):
+def get_valid_arrangements(compatible_indices, return_first, random_order, show_progress):
     last_piece_index = len(compatible_indices) - 1
 
     def _get_valid_arrangements(partial_arrangement, remaining_possible_placement_indices):
@@ -18,12 +18,13 @@ def get_valid_arrangements(compatible_indices, return_first, random_order):
             new_arrangement = partial_arrangement + [next_placement_index]
 
             # print progress tracking by first and second piece
-            if next_piece_index == 1:
+            if show_progress and next_piece_index == 1:
                 print(new_arrangement)
 
             if next_piece_index == last_piece_index:
                 # the arrangement is done and valid
-                print(new_arrangement)
+                if show_progress:
+                    print(new_arrangement)
                 full_arrangements.append(new_arrangement)
                 if return_first:
                     return full_arrangements
