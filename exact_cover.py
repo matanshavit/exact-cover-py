@@ -37,14 +37,6 @@ def get_piece_placements(board_squares):
     ]
 
 
-# example:
-# board_squares = get_calendar_squares('Mar', '12', 'Sun')
-# placements = get_piece_placements(board_squares)
-# lengths = [len(placement_options) for placement_options in placements]
-# print(lengths)
-# print(sum(lengths))
-
-
 # returns True if two piece placements do not overlap
 def are_compatible(piece_a, piece_b):
     for square in piece_a:
@@ -74,6 +66,24 @@ def get_compatabile_placement_indicies(piece_placements):
         ]
         for piece_index, placements in enumerate(piece_placements)
     ]
+
+
+# example:
+# board_squares = get_calendar_squares('Mar', '12', 'Sun')
+# placements = get_piece_placements(board_squares)
+# lengths = [len(placement_options) for placement_options in placements]
+# print(lengths)
+# print(sum(lengths))
+# compatabile_indicies = get_compatabile_placement_indicies(placements)
+# lengths = [
+#     sum(
+#         len(placement_compatabile_indicies)
+#         for placement_compatabile_indicies in piece_compatabile_indicies
+#     )
+#     for piece_compatabile_indicies in compatabile_indicies
+# ]
+# print(lengths)
+# print(sum(lengths))
 
 
 def placements_and_compatability(month, date, day):
